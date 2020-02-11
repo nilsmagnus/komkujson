@@ -9,7 +9,8 @@ import (
 func main() {
 	e := echo.New()
 
-	e.GET("/typedresponse", typed)
+	e.GET("/jsonbodyrequest", withJsonBody)
+	e.GET("/typedresponse", typedresponse)
 	e.GET("/", fallback)
 
 	e.Logger.Fatal(e.Start(":8080"))
@@ -20,7 +21,7 @@ func fallback(c echo.Context) error {
 	return c.JSON(200, response)
 }
 
-func typed(c echo.Context) error {
+func typedresponse(c echo.Context) error {
 
 	type a struct {
 		A string `json:"a"`
@@ -38,6 +39,4 @@ func withJsonBody(c echo.Context) error {
 		return err
 	}
 	return c.JSON(http.StatusCreated, u)
-	// or
-	// return c.XML(http.StatusCreated, u)
 }
