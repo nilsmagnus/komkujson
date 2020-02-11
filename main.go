@@ -9,7 +9,7 @@ import (
 func main() {
 	e := echo.New()
 
-	e.GET("/jsonbodyrequest", withJsonBody)
+	e.POST("/jsonbodyrequest", withJsonBody)
 	e.GET("/typedresponse", typedresponse)
 	e.GET("/", fallback)
 
