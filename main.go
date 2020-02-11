@@ -2,6 +2,7 @@ package main
 
 import (
 	"net/http"
+	"sort"
 
 	"github.com/labstack/echo"
 )
@@ -15,6 +16,7 @@ func main() {
 	e.GET("/", fallback)
 
 	e.Logger.Fatal(e.Start(":8080"))
+
 }
 
 func fallback(c echo.Context) error {
@@ -40,4 +42,12 @@ func withJsonBody(c echo.Context) error {
 		return err
 	}
 	return c.JSON(http.StatusCreated, u)
+}
+
+// sorting is not hard in go, use the closure
+func sortingfoo() {
+	toSort := "heiabdc"
+	sort.Slice(toSort, func(i, j int) bool {
+		return toSort[i] < toSort[j]
+	})
 }
