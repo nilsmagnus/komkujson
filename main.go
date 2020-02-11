@@ -8,6 +8,7 @@ import (
 
 func main() {
 	e := echo.New()
+	e.HideBanner = true
 
 	e.POST("/jsonbodyrequest", withJsonBody)
 	e.GET("/typedresponse", typedresponse)
